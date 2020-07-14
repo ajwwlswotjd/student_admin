@@ -1,45 +1,74 @@
 const log = console.log;
 const local = window.localStorage;
+let app = null;
 let user = -1;
 
 class App {
 	constructor(list){
 		this.studentList = list;
 		this.init();
+
+		$("nav > li").eq(2).click();
 	}
 
 	init(){
-		// this.loadingList(0);
 
 		document.querySelectorAll("nav > li").forEach((x,idx)=>{
 			x.addEventListener("click",(e)=>{
-				this.loadingList(idx);
+				let target = e.target;
+				this.loadingList(target);
 			});
+		});
+
+		document.querySelector("#login_submit").addEventListener("click",()=>{
+			let id = login_id.value.trim();
+			let pwd = login_pwd.value;
+			if(id == ""){
+				Swal.fire({
+					icon: 'error',
+					title: '로그인 실패',
+					text: '아이디를 입력해주세요.',
+					footer: ''
+				});
+				return;
+			}
+			if(pwd == ""){
+				Swal.fire({
+					icon: 'error',
+					title: '로그인 실패',
+					text: '비밀번호를 입력해주세요.',
+					footer: ''
+				});
+				return;
+			}
+
+			this.login(id,pwd);
 		});
 	}
 
-	loadingList(index){
+	login(id,pwd){
+
+	}
+
+	join(id,pwd,pwd_check,grade,name,age){
+
+	}
+
+	loadingList(target){
+		let sec_target = target.dataset.target;
+
 		$(".page.on").fadeOut();
 		$(".page.on").removeClass("on");
-		$(".page").eq(index).fadeIn();
-		$(".page").eq(index).addClass("on");
+
+		$(`#${sec_target}`).fadeIn();
+		$(`#${sec_target}`).addClass("on");
+
 		$("nav > li.active").removeClass("active");
-		$("nav > li").eq(index).addClass("active");
-		let arr = [
-		 ()=>{ //메인
-		 	
-		 },
-		 ()=>{ // 인서트
-		 	
-		 },
-		 ()=>{ // 딜리트
-		 	
-		 }
-		];
+		$(target).addClass("active");
 	}
 }
 
-window.addEventListener("load",()=>{
+	window.addEventListener("load",()=>{
 	// let list = JSON.stringify([1,2,3,4,5,{"qqq":12334}],null,0);
 	// local.setItem("list",list);
 	// log(local);
@@ -48,14 +77,11 @@ window.addEventListener("load",()=>{
 	let app = new App(json);
 });
 
-class Student {
-	constructor(id,pwd,score){
-		this.id = id;
-		this.pwd = pwd;
-		this.score = score;
+	class Student {
+		constructor(id,pwd,score,name){
+			this.id = id;
+			this.pwd = pwd;
+			this.score = score;
+			this.name = name;
+		}
 	}
-}
-
-function loginSubmit(){
-	return false;
-}

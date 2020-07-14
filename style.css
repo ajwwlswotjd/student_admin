@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "fontawesome/css/font-awesome.min.css";
+@import "fontawesome/css/all.min.css";
 @font-face {
 	src:url('NotoSansKR-Regular.otf');
 	font-family: "noto";
@@ -99,10 +99,6 @@ nav > li.active {
 	position: relative;
 }
 
-#login {
-	display: block;
-}
-
 #login > .div-wrapper {
 	display: flex;
 }
@@ -119,7 +115,7 @@ height: 100%; position: relative;}
 .login-circle {
 	width: 300px;
 	height: 300px;
-	background-color: #fff;
+	background-color: #dfdfdf;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -171,6 +167,7 @@ height: 100%; position: relative;}
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 }
 
 .input-box {
@@ -181,13 +178,7 @@ height: 100%; position: relative;}
 	display: flex;
 }
 
-.login-right > form {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-}
-
-.login-right > form > h1 {
+.login-right > h1 {
 	margin-bottom: 50px;
 	font-size: 40px;
 }
@@ -234,4 +225,72 @@ height: 100%; position: relative;}
 
 #login_submit:hover {
 	background-color: #4daaf7;
+}
+
+#join > .div-wrapper {
+	display: flex;justify-content: center;align-items: center;
+}
+
+.join-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.join-form > h1 {
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+.join-input {
+	margin-top: 20px;
+	width: 400px;
+	position: relative;
+}
+
+.join-input > input {
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	outline: none;
+	border:2px solid #ddd;
+	padding-left: 15px;
+	padding-right: 40px;
+	position: relative;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	transition: border .3s;
+}
+
+.join-input > label {
+	position: absolute;
+	line-height: 40px;
+	z-index: 2;
+	right: 15px;
+	color: #bbb;
+}
+
+.join-input > input::placeholder {
+	color: #bbb;
+}
+
+.join-input > span {
+	position: relative;
+	top: 5px;
+	width: 400px;
+	font-size: 14px;
+	color: #898989;
+	transition: color .3s;
+}
+
+#join_submit {
+	width: 100%;height: 60px;
+	position: relative;
+	top: 30px;
+	color: #fff;
+	outline: none;
+	background-color: #479ee5;
+	border:none;
 }
