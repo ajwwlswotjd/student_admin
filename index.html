@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<script src="app.js"></script>
+	<script src="jquery.js"></script>
+	<title>학생 관리 프로그램</title>
+</head>
+<body>
+	<header>학생 관리 프로그램</header>
+	<nav>
+		<li class="active">LOGIN 로그인</li>
+		<li>MAIN 출력</li>
+		<li>INSERT 가입</li>
+		<li>DELETE 탈퇴</li>
+	</nav>
+	<div id="screen">
+		<div class="screen-inner">
+			<section id="login" class="page on">
+				<div class="div-wrapper">
+					<div class="login-left">
+						<div class="login-circle">
+							<img src="imgs/login_logo.png" alt="">
+							<div class="circle-circle"></div>
+							<div class="circle-circle"></div>
+							<div class="circle-square"></div>
+							<div class="circle-square"></div>
+						</div>
+					</div>
+
+					<div class="login-right">
+						<form action="#" onsubmit="return loginSubmit(this);">
+							<h1>로그인</h1>
+							<div class="input-box">
+								<label for="login_id">
+									<i class="fa fa-user"></i>
+								</label>
+								<input type="text" id="login_id" placeholder="ID">
+							</div>
+							<div class="input-box">
+								<label for="login_pwd">
+									<i class="fa fa-lock"></i>
+								</label>
+								<input type="password" id="login_pwd" placeholder="Password">
+							</div>
+							<button type="submit" id="login_submit">로그인</button>
+							<div class="password_reset">비밀번호를 잊으셨나요?</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<section id="main" class="page">
+				메인
+			</section>
+			<section id="insert" class="page">
+				인서트
+			</section>
+			<section id="delete" class="page">
+				딜리트
+			</section>
+		</div>
+	</div>
+</body>
+</html>
