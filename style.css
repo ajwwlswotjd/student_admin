@@ -101,14 +101,16 @@ nav > li.active {
 
 #login > .div-wrapper {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#login > .div-wrapper > div {width: 50%;
-height: 100%; position: relative;}
 
 .login-left {
 	display: flex;
 	justify-content: center;
+	width: 100%;
+	height: 100%;
 	align-items: center;
 }
 
@@ -168,6 +170,8 @@ height: 100%; position: relative;}
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	width: 100%;
+	height: 100%;
 }
 
 .input-box {
@@ -261,7 +265,7 @@ height: 100%; position: relative;}
 	color: #666;
 	font-weight: bold;
 	font-size: 15px;
-	transition: border .3s;
+	transition: border .3s, color .3s;
 }
 
 .join-input > label {
@@ -288,9 +292,26 @@ height: 100%; position: relative;}
 #join_submit {
 	width: 100%;height: 60px;
 	position: relative;
+	font-size: 17px;
 	top: 30px;
 	color: #fff;
 	outline: none;
 	background-color: #479ee5;
 	border:none;
+}
+
+#join_submit:hover {
+	background-color: #4daaf7;
+}
+
+
+.join-input-double {
+	width: 400px;
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+}
+
+.join-input-double > .join-input {
+	width: 49%;
 }
