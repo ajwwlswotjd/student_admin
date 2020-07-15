@@ -11,45 +11,36 @@
 <body>
 	<header>학생 관리 프로그램</header>
 	<nav>
-		<li class="active" data-target="login">LOGIN 로그인</li>
+		<li data-target="logout">LOGOUT 로그아웃</li>
 		<li data-target="info">INFO 개인정보</li>
-		<li data-target="join">JOIN 가입</li>
+		<li class="active-fff" data-target="login">LOGIN 로그인</li>
+		<li class="active-fff" data-target="join">JOIN 가입</li>
 		<li data-target="home">HOME 메인</li>
 		<li data-target="statistics">GRAPH 통계</li>
+
 	</nav>
 	<div id="screen">
-		<div class="screen-inner">
-			<section id="login" class="page on">
-				<div class="div-wrapper">
-					<!-- <div class="login-left">
-						<div class="login-circle">
-							<img src="imgs/login_logo.png" alt="">
-							<div class="circle-circle"></div>
-							<div class="circle-circle"></div>
-							<div class="circle-square"></div>
-							<div class="circle-square"></div>
-						</div>
-					</div> -->
-
+		<section id="login" class="page on page-white">
+			<div class="div-wrapper">
 					<div class="login-right">
-							<h1>로그인</h1>
-							<div class="input-box">
-								<label for="login_id">
-									<i class="fa fa-user"></i>
-								</label>
-								<input type="text" id="login_id" placeholder="ID">
-							</div>
-							<div class="input-box">
-								<label for="login_pwd">
-									<i class="fa fa-lock"></i>
-								</label>
-								<input type="password" id="login_pwd" placeholder="Password">
-							</div>
-							<button type="submit" id="login_submit">로그인</button>
+						<h1>로그인</h1>
+						<div class="input-box">
+							<label for="login_id">
+								<i class="fa fa-user"></i>
+							</label>
+							<input type="text" id="login_id" placeholder="ID">
+						</div>
+						<div class="input-box">
+							<label for="login_pwd">
+								<i class="fa fa-lock"></i>
+							</label>
+							<input type="password" id="login_pwd" placeholder="Password">
+						</div>
+						<button type="submit" id="login_submit">로그인</button>
 					</div>
 				</div>
 			</section>
-			<section id="join" class="page">
+			<section id="join" class="page page-white">
 				<div class="div-wrapper">
 					<div class="join-form">
 						<h1>회원가입</h1>
@@ -101,7 +92,7 @@
 								<label for="join_age">
 									<i class="fas fa-graduation-cap"></i>
 								</label>
-								<input type="number" id="join_age" placeholder="AGE" min="0">
+								<input type="number" id="join_age" placeholder="AGE" min="0" onkeydown=" return false;">
 								<span class="age_span">
 									1 이상의 정수
 								</span>
@@ -115,12 +106,26 @@
 				개인정보
 			</section>
 			<section id="home" class="page">
-				메인
+				<table id="home-table">
+					<thead>
+						<tr>
+							<th>이름</th>
+							<th>점수</th>
+							<th>나이</th>
+							<th>
+								
+							</th>
+						</tr>
+					</thead>
+				</table>
 			</section>
 			<section id="statistics" class="page">
 				통계
 			</section>
+			<section id="logout" class="page">
+				<h1>정말로 로그아웃 하시겠습니까?</h1>
+				<button id="logout_btn">확인</button>
+			</section>
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>

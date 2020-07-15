@@ -62,8 +62,13 @@ nav > li {
 	color: #fffa;
 }
 
+nav > li.active-fff.active {
+	background-color: #fff;
+}
+
 nav > li.active {
 	background-color: #f7f7f7;
+	/*background-color: #fff;*/
 	color: #36529b;
 	font-weight: bold;
 }
@@ -74,16 +79,6 @@ nav > li.active {
 	position: fixed;
 	bottom: 0;
 	right: 0;
-	/*background-color: #f7f7f7;*/
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.screen-inner {
-	width: calc(100% - 100px);
-	height: calc(100% - 100px);
-	position: relative;
 }
 
 .page {
@@ -91,6 +86,7 @@ nav > li.active {
 	height: 100%;
 	position: relative;
 	display: none;
+	background-color: #f7f7f7;
 }
 
 .div-wrapper {
@@ -314,4 +310,44 @@ nav > li.active {
 
 .join-input-double > .join-input {
 	width: 49%;
+}
+
+.page.page-white {
+	background: #fff;
+}
+
+#logout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+}
+
+#logout > h1 {
+	font-size: 2.5rem;
+}
+
+#logout_btn {
+	position: relative;
+	top: 20px;
+	background-color: #479ee5;
+	color: #fff;
+	border:none;
+	border-radius: 5px;
+	width: 200px;
+	outline: none;
+	font-size: 18px;
+	cursor: pointer;
+	height: 60px;
+}
+
+#logout_btn:hover {
+	background-color: #4daaf7;	
+}
+
+#home-table {
+	border-spacing: 0;
+	position: relative;
+	background-color: #fff;
 }
