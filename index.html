@@ -57,7 +57,7 @@
 							</label>
 							<input type="text" id="join_name" placeholder="NAME">
 							<span class="name_span">
-								영어, 한글로만 이루어진 2자 이상
+								영어, 한글,숫자, 공백으로만 이루어진 2자 이상
 							</span>
 						</div>
 						<div class="join-input">
@@ -92,7 +92,7 @@
 								<label for="join_age">
 									<i class="fas fa-graduation-cap"></i>
 								</label>
-								<input type="number" id="join_age" placeholder="AGE" min="0" onkeydown=" return false;">
+								<input type="number" id="join_age" placeholder="AGE" min="0">
 								<span class="age_span">
 									1 이상의 정수
 								</span>
@@ -106,21 +106,75 @@
 				개인정보
 			</section>
 			<section id="home" class="page">
-				<table id="home-table">
-					<thead>
-						<tr>
-							<th>이름</th>
-							<th>점수</th>
-							<th>나이</th>
-							<th>
-								
-							</th>
-						</tr>
-					</thead>
-				</table>
+				<div class="home-inner">
+					<table id="home-table">
+						<thead>
+							<tr>
+								<th width="10%">순위</th>
+								<th width="20%">
+									<div class="th-wrapper">
+										<span>이름</span>
+									</div>
+								</th>
+								<th width="30%">
+									<div class="th-wrapper">
+										<span>아이디</span>
+									</div>
+								</th>
+								<th width="20%">
+									<div class="th-wrapper">
+										<span>점수</span>
+										<div class="th-btn-box">
+											<i class="fa fa-sort-up sort-asc" data-order="asc"></i>
+											<i data-order="desc" class="fa fa-sort-down order-active"></i>
+										</div>
+									</div>
+								</th>
+								<th width="20%">
+									<div class="th-wrapper">
+										<span>나이</span>
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>정재성</td>
+								<td>아이디</td>
+								<td>100점</td>
+								<td>18세</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id="home-nav">
+						<li class="home-active">1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>10</li>
+					</div>
+				</div>
 			</section>
 			<section id="statistics" class="page">
-				통계
+				<div class="static-list">
+					<div class="static-avg">
+						<canvas width="300" height="200" id="score-canvas"></canvas>
+						<p>학생 평균점수</p>
+					</div>
+					<div class="static-avg">
+						<canvas width="300" height="200" id="age-canvas"></canvas>
+						<p>학생 평균나이</p>
+					</div>
+				</div>
+				<div class="static-king">
+					
+				</div>
 			</section>
 			<section id="logout" class="page">
 				<h1>정말로 로그아웃 하시겠습니까?</h1>

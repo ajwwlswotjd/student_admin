@@ -1,8 +1,8 @@
 const log = console.log;
 const local = window.localStorage;
 
-const id_pat = /^[a-z]+[a-z0-9]{5,}$/;
-const name_pat = /^[a-zA-Z가-힣]{2,}$/;
+const id_pat = /^[a-z]+[a-z0-9\_]{5,}$/;
+const name_pat = /^[a-zA-Z가-힣0-9\s]{2,}$/;
 const pwd_pat = /^(?=.*[a-zA-Z])(?=.*\d).{6,20}$/;
 
 let id_ok = false;
@@ -13,6 +13,9 @@ let score_ok = false;
 let age_ok = false;
 
 let now_target = null; 
+let order = false;
+let showOnOnePageCnt = 8;
+let now_page = null;
 
 
 let app = null;
@@ -23,10 +26,16 @@ class App {
 		this.studentList = list;
 		this.init();
 
-		$("nav > li").eq(4).click();
+		$("nav > li").eq(5).click();
 	}
 
 	init(){
+
+		$(".th-btn-box > i").on("click",(e)=>{
+			order = !order;
+			$(".th-btn-box > i").toggleClass("order-active");
+			this.fillTable(showOnOnePageCnt,now_page);
+		});
 
 		document.querySelector("#logout_btn").addEventListener("click",(e)=>{
 			user = -1;
@@ -337,6 +346,68 @@ class App {
 
 		$("#login input").val('');
 		this.join_init();
+
+		let arr = {
+			'default' : ()=>{},
+			"home" : ()=>{
+				let pageCnt = Math.ceil(this.studentList.length /showOnOnePageCnt);
+				let dom = document.querySelector("#home-nav");
+				dom.innerHTML = "";
+				for(let i = 1; i <= pageCnt; i++){
+					let li = document.createElement("li");
+					li.innerHTML = i;
+					li.dataset.page = i;
+					dom.appendChild(li);
+					li.addEventListener("click",(e)=>{
+						this.fillTable(showOnOnePageCnt,li.dataset.page);
+						$(".home-active").removeClass("home-active");
+						$(li).addClass("home-active");
+					});			
+				}
+				document.querySelector("#home-nav > li:first-child").click();
+			},
+			"statistics" : ()=>{
+				let score_total = 0;
+				let age_total = 0;
+				let max = 0;
+				this.studentList.forEach(x=>{
+					score_total += x.score*1;
+					age_total += x.age*1;
+					if(x.age*1 >= max) max = x.age*1;
+				});
+				let avg = Math.floor(score_total/this.studentList.length);
+				drawCanvas(document.querySelector("#score-canvas"),100,avg,"점");
+				let age = Math.floor(age_total/this.studentList.length);
+				drawCanvas(document.querySelector("#age-canvas"),100,age,"세");
+			}
+		};
+
+		(arr[target] || arr['default'])();
+	}
+
+	fillTable(showOnOnePageCnt,page){
+		// let pageCnt = Math.ceil(this.studentList.length/8);
+		let sorted = this.studentList.slice().sort((x,y)=>{
+			if(x["score"]*1 > y["score"]*1) return order ? 1 : -1;
+			if(x["score"]*1 < y["score"]*1) return order ? -1 : 1;
+			if(x["score"]*1 == y["score"]*1) return 0;
+		});
+		now_page = page;
+		let start = showOnOnePageCnt*(page-1);
+		let end = start+showOnOnePageCnt;
+		let dom = document.querySelector("#home-table tbody");
+		dom.innerHTML = "";
+		for(let i = start; i < end; i++){
+			let student = sorted[i];
+			if(student == undefined) return;
+			let tr = document.createElement("tr");
+			tr.innerHTML = `<td>${order ? this.studentList.length-i : (i+1)}</td>
+			<td>${student.name}</td>
+			<td>${student.id}</td>
+			<td>${student.score}점</td>
+			<td>${student.age}세</td>`;
+			dom.appendChild(tr);
+		}
 	}
 
 	join_init(){
@@ -373,4 +444,53 @@ class Student {
 		this.name = name;
 		this.age = age;
 	}
+}
+
+function drawCanvas(canvas,total,current,txt){
+	let ctx = canvas.getContext("2d");
+	let w = canvas.width;
+	let h = canvas.height;
+	let now = 0;
+	let term = current / 45;
+	let frame = setInterval(()=>{
+		now+=term;
+		if(now >= current){
+			now=current;
+			clearInterval(frame);
+		}
+		draw(ctx,w,h,now,total,txt);
+	},1000/45);
+}
+
+function draw(ctx,w,h,now,total,txt){
+	ctx.clearRect(0,0,w,h);
+
+	ctx.beginPath();
+	ctx.moveTo(w/2,h/2);
+	ctx.arc(w/2,h/2,w/2-70,-Math.PI/2, 3/2*Math.PI);
+	ctx.closePath();
+	ctx.fillStyle = "#f4f5f9";
+	ctx.fill();
+
+	ctx.beginPath();
+	ctx.moveTo(w/2,h/2);
+	ctx.arc(w/2,h/2,w/2-70,-Math.PI/2,-Math.PI/2+(now/total)*(2*Math.PI));
+	ctx.closePath();
+	ctx.fillStyle = "#333030";
+	ctx.fill();
+
+	ctx.beginPath();
+	ctx.moveTo(w/2,h/2);
+	ctx.arc(w/2,h/2,w/2-90,-Math.PI/2, 3/2*Math.PI);
+	ctx.closePath();
+	ctx.fillStyle = "#fff";
+	ctx.fill();
+
+	let percent = Math.floor(now/total*100);
+	ctx.moveTo(w/2,h/2);
+	ctx.font = "bold 22px noto";
+	ctx.fillStyle = "#333030";
+	ctx.textAlign = "center";
+	ctx.textBaseline = "middle";
+	ctx.fillText(percent+txt,w/2,h/2);
 }
