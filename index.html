@@ -103,7 +103,34 @@
 				</div>
 			</section>
 			<section id="info" class="page">
-				개인정보
+				<div class="div-wrapper">
+					<h1>개인 정보</h1>
+					<div class="info-input">
+						<label for="info_id">아이디 : </label>
+						<input type="text" id="info_id" readonly>
+					</div>
+					<div class="info-input">
+						<label for="info_name">이름 : </label>
+						<input type="text" id="info_name" readonly>
+						<button class="info_edit" data-edit="name">수정</button>
+					</div>
+					<div class="info-input">
+						<label for="info_pwd">비밀번호 : </label>
+						<input type="password" id="info_pwd" readonly>
+						<button class="info_edit" data-edit="pwd">수정</button>
+					</div>
+					<div class="info-input">
+						<label for="info_score">점수 : </label>
+						<input type="text" id="info_score" readonly>
+						<button class="info_edit" data-edit="score">수정</button>
+					</div>
+					<div class="info-input">
+						<label for="info_age">나이 : </label>
+						<input type="text" id="info_age" readonly>
+						<button class="info_edit" data-edit="age">수정</button>
+					</div>
+					<button id="info_delete">회원 탈퇴</button>
+				</div>
 			</section>
 			<section id="home" class="page">
 				<div class="home-inner">
@@ -165,16 +192,24 @@
 				<div class="static-list">
 					<div class="static-avg">
 						<canvas width="300" height="200" id="score-canvas"></canvas>
-						<p>학생 평균점수</p>
+						<p>전체 학생 평균점수</p>
 					</div>
 					<div class="static-avg">
 						<canvas width="300" height="200" id="age-canvas"></canvas>
-						<p>학생 평균나이</p>
+						<p>전체 학생 평균나이</p>
 					</div>
 				</div>
 				<div class="static-king">
-					
+					<div class="static-king-score">
+						<canvas width="300" height="200" id="king-canvas"></canvas>
+						<p>최대 평균 나이 : <span class="static-min">19세</span></p>
+					</div>
+					<div class="static-king-score">
+						<canvas width="300" height="200" id="king-canvas2"></canvas>
+						<p>최저 평균 나이 : <span class="static-max">15세</span></p>
+					</div>
 				</div>
+				<h1 class="static-no">학생이 존재하지 않습니다.</h1>
 			</section>
 			<section id="logout" class="page">
 				<h1>정말로 로그아웃 하시겠습니까?</h1>
