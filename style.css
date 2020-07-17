@@ -495,6 +495,7 @@ nav > li.active {
 	display: flex;
 }
 
+.home-no,
 .static-no {
 	position: absolute;
 	top: 50%;
@@ -502,7 +503,7 @@ nav > li.active {
 	width: 100%;
 	text-align: center;
 	color: #777;
-	font-size: 45px;
+	font-size: 25px;
 }
 
 .static-king-score {
@@ -552,7 +553,7 @@ nav > li.active {
 	position: relative;
 	font-size: 17px;
 	color: #222;
-	font-weight: bold;
+	font-weight: bolder;
 }
 
 .info-input > label {
@@ -583,14 +584,14 @@ nav > li.active {
 	width: 50px;
 	cursor: pointer;
 	border-radius: 5px;
-	background-color: #479ee5;
+	background-color: #007bff;
 	color: #fff;
 	border:none;
 	right: 10px;
 }
 
 .info_edit:hover {
-	background-color: #3d86c1;
+	background-color: #0069d9;
 }
 
 #info_delete {

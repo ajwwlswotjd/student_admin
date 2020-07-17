@@ -31,6 +31,125 @@ class App {
 
     init(){
 
+        document.querySelector(".edit-name").addEventListener("click",async ()=>{
+            const { value: name } = await Swal.fire({
+                title: '바꿀 이름을 입력해주세요',
+                input: 'text',
+                inputPlaceholder: '이름'
+            });
+            if(name) {
+                if(name_pat.test(name)){
+                    this.studentList[user].name = name;
+                    this.saveOnLocal();
+                   Swal.fire({
+                        icon: 'success',
+                        title: '변경 완료',
+                        text: '이름 변경이 완료되었습니다.',
+                        footer: ''
+                    }).then(e=>{
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '변경 실패',
+                        text: '이름은 2자 이상의 영어,한글,숫자,공백으로만 이루어져야 합니다.',
+                        footer: ''
+                    });
+                }
+            }
+        });
+
+        document.querySelector(".edit-pwd").addEventListener("click",async ()=>{
+            const { value: pwd } = await Swal.fire({
+                title: '바꿀 비밀번호를 입력해주세요.',
+                input: 'password',
+                inputPlaceholder: '비밀번호'
+            });
+            if(pwd) {
+                if(pwd_pat.test(pwd)){
+                    this.studentList[user].pwd = pwd;
+                    this.saveOnLocal();
+                   Swal.fire({
+                        icon: 'success',
+                        title: '변경 완료',
+                        text: '비밀번호 변경이 완료되었습니다.',
+                        footer: ''
+                    }).then(e=>{
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '변경 실패',
+                        text: '비밀번호는 6자 이상 20자 이하로 영어와 숫자를 모두 포함해야 합니다.',
+                        footer: ''
+                    });
+                }
+            }
+        });
+
+        document.querySelector(".edit-score").addEventListener("click",async ()=>{
+            const { value: score } = await Swal.fire({
+                title: '바꿀 점수를 입력해주세요.',
+                input: 'number',
+                inputPlaceholder: '점수'
+            });
+            if(score) {
+                if(score >= 0 && score <= 100){
+                    this.studentList[user].score = score;
+                    this.saveOnLocal();
+                   Swal.fire({
+                        icon: 'success',
+                        title: '변경 완료',
+                        text: '점수 변경이 완료되었습니다.',
+                        footer: ''
+                    }).then(e=>{
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '변경 실패',
+                        text: '점수는 0 이상 100 이하의 정수이여야 합니다.',
+                        footer: ''
+                    });
+                }
+            }
+        });
+
+        document.querySelector(".edit-age").addEventListener("click",async ()=>{
+            const { value: age } = await Swal.fire({
+                title: '바꿀 나이를 입력해주세요.',
+                input: 'number',
+                inputPlaceholder: '나이'
+            });
+            if(age) {
+                if(age >= 1){
+                    this.studentList[user].age = age;
+                    this.saveOnLocal();
+                   Swal.fire({
+                        icon: 'success',
+                        title: '변경 완료',
+                        text: '나이 변경이 완료되었습니다.',
+                        footer: ''
+                    }).then(e=>{
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '변경 실패',
+                        text: '나이는 1 이상의 정수이여야 합니다.',
+                        footer: ''
+                    });
+                }
+            }
+        });
+
+
+
+
         $(".th-btn-box > i").on("click",(e)=>{
             order = !order;
             $(".th-btn-box > i").toggleClass("order-active");
@@ -350,6 +469,15 @@ class App {
         let arr = {
             'default' : ()=>{},
             "home" : ()=>{
+                if(this.studentList.length == 0){
+                    $("#home-nav").hide();
+                    $("#home-table").hide();
+                    $(".home-no").show();
+                    return;
+                }
+                $("#home-nav").show();
+                $("#home-table").show();
+                $(".home-no").hide();
                 let pageCnt = Math.ceil(this.studentList.length /showOnOnePageCnt);
                 let dom = document.querySelector("#home-nav");
                 dom.innerHTML = "";
@@ -428,10 +556,6 @@ class App {
                 info_age.value = signedUser.age+"세";
             }
         };
-
-        document.querySelectorAll(".info_edit").forEach(x=>{
-        	
-        });
 
         document.querySelector('#info_delete').addEventListener("click",()=>{
             Swal.fire({
